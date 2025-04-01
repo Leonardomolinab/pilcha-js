@@ -5,19 +5,12 @@ function sumarProducto(nombre, precio) {
   alert(nombre + " agregado al carrito por $" + precio + ".");
 }
 
-function restarProducto(nombre) {
+
+function eliminarProducto(nombre) {
   carrito = carrito.filter(function (producto) {
     return producto.nombre !== nombre;
   });
   alert(nombre + " eliminado del carrito.");
-}
-
-function calcularTotal() {
-  var total = 0;
-  for (var i = 0; i < carrito.length; i++) {
-    total += carrito[i].precio;
-  }
-  return total;
 }
 
 function finalizarCompra() {
@@ -26,24 +19,24 @@ function finalizarCompra() {
 }
 
 function menu() {
-  let opcion;
+  let opciones;
   do {
-    opcion = prompt(
+    opciones = prompt(
       "Seleccione una opción:\n1. Agregar producto\n2. Eliminar producto\n3. Finalizar compra \n4. Salir."
     );
     switch (opcion) {
       case "1":
         let nombre = prompt("Ingrese el nombre del producto:");
-        let precio = Number(prompt("Ingrese el precio del producto:"));
-        if (isNaN(precio) === false && nombre) {
-          sumarProducto(nombre, precio);
-        } else {
+        let precio = (prompt("Ingrese el precio del producto:"));
+        if (isNaN(precio) || precio == '' || nombre=='') {
           alert("Datos inválidos.");
+        } else {
+          sumarProducto(nombre, precio);
         }
         break;
       case "2":
         let eliminar = prompt("Ingrese el nombre del producto a eliminar:");
-        restarProducto(eliminar);
+        eliminarProducto(eliminar);
         break;
       case "3":
         finalizarCompra();
